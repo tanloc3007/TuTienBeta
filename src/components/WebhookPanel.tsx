@@ -11,6 +11,7 @@ export function WebhookPanel({ state, onStateUpdate }: WebhookPanelProps) {
   const [selectedDuration, setSelectedDuration] = useState<number>(25); // minutes
   const [timeLeft, setTimeLeft] = useState<number>(0); // seconds
   const [isAmbientPlaying, setIsAmbientPlaying] = useState<boolean>(false);
+  const [showCancelConfirm, setShowCancelConfirm] = useState<boolean>(false);
   
   // Web Audio Context refs for browser-synthesized meditation white-noise/rain sound
   const audioCtxRef = useRef<AudioContext | null>(null);
@@ -41,6 +42,7 @@ export function WebhookPanel({ state, onStateUpdate }: WebhookPanelProps) {
       }, 1000);
     } else {
       setTimeLeft(0);
+      setShowCancelConfirm(false);
       if (timerIntervalRef.current) {
         clearInterval(timerIntervalRef.current);
         timerIntervalRef.current = null;
@@ -321,17 +323,40 @@ export function WebhookPanel({ state, onStateUpdate }: WebhookPanelProps) {
               ))}
             </div>
           ) : (
-            <button
-              onClick={() => {
-                if (window.confirm("Cố ý phá pháp trận bế quan nửa chừng sẽ bị Tẩu hỏa nhập ma ngay lập tức! Đạo hữu chắc chứ?")) {
-                  triggerBacklashBackplane();
-                }
-              }}
-              className="mt-4 px-4 py-1 text-[10px] font-mono text-red-500 hover:text-red-400 border border-red-500/30 hover:border-red-400 bg-red-500/5 hover:bg-red-500/10 rounded-xl transition-all flex items-center gap-1.5 shrink-0 cursor-pointer"
-            >
-              <Flame className="w-3.5 h-3.5 animate-bounce" />
-              <span>Phá Trận (Chấp nhận Tẩu Hỏa)</span>
-            </button>
+            <div className="mt-4 w-full flex flex-col items-center">
+              {showCancelConfirm ? (
+                <div className="p-4 rounded-xl border border-red-500/30 bg-red-950/20 text-center flex flex-col items-center gap-3 w-full animate-fade-in">
+                  <span className="text-[11px] text-red-400 font-bold leading-relaxed">
+                    ⚙️ PHÁ KHẢO CẢNH GIỚI: Đạo hữu dứt khoát chấm dứt Bế Quan giữa chừng? Tâm ma phản phệ sẽ trực tiếp dội phá tu vi cực nguy cấp!
+                  </span>
+                  <div className="flex gap-3 justify-center">
+                    <button
+                      onClick={() => {
+                        triggerBacklashBackplane();
+                        setShowCancelConfirm(false);
+                      }}
+                      className="px-4 py-1.5 rounded-lg bg-red-600 hover:bg-red-500 text-white font-mono text-[10.5px] font-bold uppercase cursor-pointer"
+                    >
+                      Xác Nhận Bẻ Trận
+                    </button>
+                    <button
+                      onClick={() => setShowCancelConfirm(false)}
+                      className="px-4 py-1.5 rounded-lg bg-slate-900 hover:bg-slate-800 border border-slate-850 text-slate-400 text-[10.5px] font-mono cursor-pointer"
+                    >
+                      Bảo Trì Định Định
+                    </button>
+                  </div>
+                </div>
+              ) : (
+                <button
+                  onClick={() => setShowCancelConfirm(true)}
+                  className="px-4 py-1.5 text-[10px] font-mono text-red-500 hover:text-red-400 border border-red-500/30 hover:border-red-400 bg-red-500/5 hover:bg-red-500/10 rounded-xl transition-all flex items-center gap-1.5 shrink-0 cursor-pointer"
+                >
+                  <Flame className="w-3.5 h-3.5 animate-bounce" />
+                  <span>Phá Trận (Chấp nhận Tẩu Hỏa)</span>
+                </button>
+              )}
+            </div>
           )}
         </div>
 

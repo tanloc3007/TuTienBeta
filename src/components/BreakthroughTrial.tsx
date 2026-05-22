@@ -27,16 +27,18 @@ export function BreakthroughTrial({ state, onEvaluateBreakthrough }: Breakthroug
   const challenge = state.challenges?.[currentTier];
 
   const [textAnswer, setTextAnswer] = useState("");
+  const [initializedTier, setInitializedTier] = useState<number | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [loadingMsg, setLoadingMsg] = useState("");
   const [result, setResult] = useState<{ success: boolean; comment: string } | null>(null);
 
-  // Set default initial code placeholder when eligible
+  // Set default initial code placeholder when eligible and only run once per tier
   useEffect(() => {
-    if (challenge) {
+    if (challenge && initializedTier !== currentTier) {
       setTextAnswer(challenge.placeholder);
+      setInitializedTier(currentTier);
     }
-  }, [challenge]);
+  }, [challenge, currentTier, initializedTier]);
 
   // Count words helper
   const getWordCount = (str: string) => {

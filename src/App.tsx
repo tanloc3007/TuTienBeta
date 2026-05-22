@@ -220,7 +220,7 @@ export default function App() {
             <div className="flex bg-slate-950/60 p-1.5 rounded-xl border border-slate-900 overflow-x-auto gap-1">
               <button
                 onClick={() => setActiveTab("playground")}
-                className={`flex-1 min-w-[110px] py-2 px-3 text-xs font-bold rounded-lg transition-all flex items-center justify-center gap-1.5 font-mono cursor-pointer ${
+                className={`flex-1 shrink-0 min-w-[110px] py-2 px-3 text-xs font-bold rounded-lg transition-all flex items-center justify-center gap-1.5 font-mono cursor-pointer ${
                   activeTab === "playground"
                     ? "bg-yellow-500/10 text-yellow-400 border border-yellow-500/20"
                     : "text-slate-400 hover:text-slate-200"
@@ -232,7 +232,7 @@ export default function App() {
 
               <button
                 onClick={() => setActiveTab("webhooks")}
-                className={`flex-1 min-w-[110px] py-2 px-3 text-xs font-bold rounded-lg transition-all flex items-center justify-center gap-1.5 font-mono cursor-pointer ${
+                className={`flex-1 shrink-0 min-w-[110px] py-2 px-3 text-xs font-bold rounded-lg transition-all flex items-center justify-center gap-1.5 font-mono cursor-pointer ${
                   activeTab === "webhooks"
                     ? "bg-amber-500/10 text-amber-400 border border-amber-500/20"
                     : "text-slate-400 hover:text-slate-200"
@@ -244,7 +244,7 @@ export default function App() {
 
               <button
                 onClick={() => setActiveTab("shop")}
-                className={`flex-1 min-w-[110px] py-2 px-3 text-xs font-bold rounded-lg transition-all flex items-center justify-center gap-1.5 font-mono cursor-pointer ${
+                className={`flex-1 shrink-0 min-w-[110px] py-2 px-3 text-xs font-bold rounded-lg transition-all flex items-center justify-center gap-1.5 font-mono cursor-pointer ${
                   activeTab === "shop"
                     ? "bg-purple-500/10 text-purple-400 border border-purple-500/20"
                     : "text-slate-400 hover:text-slate-200"
@@ -256,16 +256,16 @@ export default function App() {
 
               <button
                 onClick={() => setActiveTab("breakthrough")}
-                className={`flex-1 min-w-[130px] py-2 px-3 text-xs font-bold rounded-lg transition-all flex items-center justify-center gap-1.5 font-mono relative cursor-pointer ${
+                className={`flex-1 shrink-0 min-w-[130px] py-2 px-3 text-xs font-bold rounded-lg transition-all flex items-center justify-center gap-1.5 font-mono relative cursor-pointer ${
                   activeTab === "breakthrough"
                     ? "bg-sky-500/10 text-sky-400 border border-sky-500/20"
                     : "text-slate-400 hover:text-slate-200"
                 }`}
               >
-                <Zap className="w-3.5 h-3.5 text-sky-450" />
+                <Zap className="w-3.5 h-3.5 text-sky-400" />
                 Kiếp Lôi Đột Phá
                 {activeChar.subLevel >= 9 && activeChar.tuVi >= activeChar.tuViRequired && (
-                  <span className="absolute -top-1 -right-1 w-2.5 h-2.5 rounded-full bg-red-500 animate-ping"></span>
+                  <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse shrink-0"></span>
                 )}
               </button>
             </div>
