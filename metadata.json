@@ -1,0 +1,6 @@
+{
+  "name": "IELTS Tu Tiên Tông",
+  "description": "Hành trình tu tiên luyện thi IELTS đỉnh cao. Bế quan tập trung (Pomodoro), chống tẩu hỏa nhập ma và độ kiếp đột phá cảnh giới dưới sự đánh giá của Thái Thượng Trưởng Lão Gemini AI.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
